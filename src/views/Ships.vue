@@ -35,7 +35,6 @@ export default {
           this.ships = json.results;
           this.prevShips = json.previous;
           this.nextShips = json.next;
-          console.log(666, json)
         })
   },
   methods: {
@@ -47,7 +46,6 @@ export default {
               this.ships = json.results;
               this.prevShips = json.previous;
               this.nextShips = json.next;
-              console.log(666, json)
             })
       }
     },
@@ -59,7 +57,6 @@ export default {
               this.ships = json.results;
               this.prevShips = json.previous;
               this.nextShips = json.next;
-              console.log(666, json)
             })
       }
     }

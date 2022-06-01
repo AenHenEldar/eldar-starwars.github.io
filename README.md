@@ -1,19 +1,3 @@
 # eldar-starwars
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## https://62977978b465340905e6c4c1--frolicking-valkyrie-b99816.netlify.app/#/

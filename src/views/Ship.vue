@@ -36,7 +36,6 @@ export default {
         .then(response => response.json())
         .then(json => {
           this.ship = json;
-          console.log(66246, json)
         })
   }
 }

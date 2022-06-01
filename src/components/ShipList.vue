@@ -35,9 +35,6 @@ export default {
       filter: ''
     }
   },
-  updated() {
-    console.log(42, this.prev, 43, this.next)
-  },
   computed: {
     filterShips() {
       return this.ships.filter(ship => ship.name.toLowerCase().includes(this.filter.toLowerCase()))
