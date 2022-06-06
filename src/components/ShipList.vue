@@ -1,24 +1,25 @@
 <template>
   <div>
-    <input v-model="filter" class="ship-filter" type="text">
+    <input @input="$emit('searchShips', $event)" class="ship-filter" type="text">
     <ul>
       <ShipItem
-        v-for="ship of filterShips"
+        v-for="ship of ships"
         :ship="ship"
         :key="ship"
       />
     </ul>
+    <Loader v-if="loading" />
     <nav class="nav">
       <button
           class="prev"
-          :class="{ prev_disabled: !prev, prev_active: prev }"
-          @click="$emit('prevShips', prev)">
+          :class="{ prev_active: prev && !loading }"
+          @click="$emit('prevShips')">
         prev
       </button>
       <button
           class="next"
-          :class="{ next_disabled: !next, next_active: next }"
-          @click="$emit('nextShips', next)">
+          :class="{ next_active: next && !loading }"
+          @click="$emit('nextShips')">
         next
       </button>
     </nav>
@@ -26,22 +27,19 @@
 </template>
 
 <script>
+import Loader from '@/components/Loader';
 import ShipItem from '@/components/ShipItem';
 
 export default {
-  props: ['ships', 'prev', 'next'],
+  props: ['ships', 'prev', 'next', 'loading'],
   data() {
     return {
       filter: ''
     }
   },
-  computed: {
-    filterShips() {
-      return this.ships.filter(ship => ship.name.toLowerCase().includes(this.filter.toLowerCase()))
-    }
-  },
   components: {
-    ShipItem
+    ShipItem,
+    Loader
   }
 }
 </script>
@@ -60,21 +58,30 @@ export default {
     color: greenyellow;
   }
   .prev, .next {
+    position: absolute;
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
     padding: 10px 20px;
     margin: 10px;
     color: black;
-    background: #999900;
+    background-color: #333300;
     border: none;
     border-radius: 20px;
   }
-  .prev_active:hover, .next_active:hover {
-    background-color: #CCCC00;
+  .prev {
+    bottom: 10%;
+    left: 30%;
   }
-  .prev_disabled, .next_disabled {
-    background-color: #333300;
+  .next {
+    bottom: 10%;
+    right: 30%;
+  }
+  .prev.prev_active, .next.next_active {
+    background: #999900;
+  }
+  .prev.prev_active:hover, .next.next_active:hover {
+    background-color: #CCCC00;
   }
   .ship-filter {
     margin-bottom: 20px;
